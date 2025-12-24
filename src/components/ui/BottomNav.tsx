@@ -1,5 +1,5 @@
+import { FileText, Gamepad2, Home, MapPin, Search } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, MapPin, Gamepad2, Search, FileText } from "lucide-react";
 
 const BottomNav = () => {
   const location = useLocation();
