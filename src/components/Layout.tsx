@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
-import BottomNav from "./BottomNav";
 import { Settings } from "lucide-react";
+import { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import BottomNav from "./BottomNav";
 
 interface LayoutProps {
   children: ReactNode;
