@@ -1,17 +1,19 @@
-import Layout from "@/components/Layout";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import Footer from "@/components/Footer";
-import terrestrial from "@/assets/terrestrial.jpg";
 import aquatic from "@/assets/aquatic.jpg";
-import tree from "@/assets/tree.jpg";
 import flying from "@/assets/fly.jpg";
 import polar from "@/assets/polar.jpg";
+import terrestrial from "@/assets/terrestrial.jpg";
+import tree from "@/assets/tree.jpg";
 import urban from "@/assets/urban.jpg";
+import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
+import { Card } from "@/components/ui/card";
+import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SpeciesGuide = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
   
   const categories = [
     { name: "Terrestrial", image: terrestrial, description: "Land-dwelling mammals, reptiles, and insects" },
@@ -21,6 +23,11 @@ const SpeciesGuide = () => {
     { name: "Polar & Arctic", image: polar, description: "Cold climate specialists" },
     { name: "Urban", image: urban, description: "City-adapted wildlife" },
   ];
+
+  const filteredCategories = categories.filter((category) =>
+    category.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    category.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <Layout>
@@ -37,6 +44,17 @@ const SpeciesGuide = () => {
           <p className="text-muted-foreground">Explore wildlife by category</p>
         </div>
 
+        {/* Search Bar */}
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search for an animal..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-9 bg-muted/50 border-muted"
+          />
+        </div>
+        
         <div className="grid grid-cols-2 gap-4">
           {categories.map((category) => (
             <Card key={category.name} className="shadow-medium overflow-hidden cursor-pointer hover:shadow-strong transition-all">
