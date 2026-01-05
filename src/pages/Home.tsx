@@ -1,16 +1,16 @@
-import Layout from "@/components/Layout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { MapPin, FileText, Crown } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import Tutorial from "@/components/Tutorial";
-import Footer from "@/components/Footer";
-import homeBg from "@/assets/home-bg.jpg";
-import terrestrial from "@/assets/terrestrial.jpg";
 import aquatic from "@/assets/aquatic.jpg";
+import homeBg from "@/assets/home-bg.jpg";
 import planisphereItaly from "@/assets/planisphere-italy.jpg";
+import terrestrial from "@/assets/terrestrial.jpg";
+import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
+import Tutorial from "@/components/Tutorial";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
+import { Crown, FileText, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [showTutorial, setShowTutorial] = useState(false);
@@ -65,10 +65,10 @@ const Home = () => {
                 <span>Report Sighting</span>
               </Button>
             </Link>
-            <Link to="/articles" data-tutorial="articles-top">
+            <Link to="/check" data-tutorial="check-top">
               <Button variant="sunrise" className="w-full h-24 flex flex-col gap-2">
                 <FileText className="h-6 w-6" />
-                <span>Read Articles</span>
+                <span>Check Path</span>
               </Button>
             </Link>
           </div>
