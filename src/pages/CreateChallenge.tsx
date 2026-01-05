@@ -1,18 +1,18 @@
-import Layout from "@/components/Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { Copy, Users, ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import Footer from "@/components/Footer";
 import gamesBg from "@/assets/games-bg.jpg";
 import groupIcon from "@/assets/groupicon.jpg";
 import quizIcon from "@/assets/quizicon.jpg";
+import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { ArrowLeft, Copy, Users } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateChallenge = () => {
   const { toast } = useToast();
@@ -31,7 +31,25 @@ const CreateChallenge = () => {
     { id: "guesses", text: "Collect 10 Wild Guesses", image: quizIcon },
   ];
 
+  const validateDateTime = (): boolean => {
+    if (!endDate || !endTime) return true; // Allow empty values
+
+    const now = new Date();
+    const selectedDateTime = new Date(`${endDate}T${endTime}`);
+
+    if (selectedDateTime <= now) {
+      toast({
+        title: "Invalid Date/Time",
+        description: "Please select a future date and time. The end date and time must be after the current moment.",
+        variant: "destructive",
+      });
+      return false;
+    }
+    return true;
+  };
+
   const handleShare = () => {
+    if (!validateDateTime()) return;
     setShowShare(true);
     toast({
       title: "Challenge Created!",
