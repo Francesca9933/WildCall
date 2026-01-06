@@ -1,13 +1,15 @@
+import gamesBg from "@/assets/games-bg.jpg";
+import Footer from "@/components/Footer";
 import Layout from "@/components/Layout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
-import Footer from "@/components/Footer";
-import gamesBg from "@/assets/games-bg.jpg";
+import { ArrowLeft } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const QuizSelection = () => {
+  const navigate = useNavigate();
   return (
     <Layout>
       <div className="relative min-h-screen">
@@ -24,6 +26,15 @@ const QuizSelection = () => {
         </div>
 
         <div className="relative z-10 p-4 space-y-6">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate("/games")}
+            className="mb-2"
+          >
+            <ArrowLeft className="h-6 w-6" />
+          </Button>
+
           <div className="text-center py-6">
             <h1 className="text-3xl font-bold mb-2">Select Quiz</h1>
             <p className="text-muted-foreground">Choose your categories and difficulty</p>
