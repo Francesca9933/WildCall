@@ -1,20 +1,26 @@
+import mapPlaceholder from "@/assets/map-placeholder.jpg";
+import reportBg from "@/assets/report-bg.jpg";
+import Footer from "@/components/Footer";
 import Layout from "@/components/Layout";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Camera, Upload, Mic, Search } from "lucide-react";
-import { useState, useRef } from "react";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import Footer from "@/components/Footer";
-import reportBg from "@/assets/report-bg.jpg";
-import mapPlaceholder from "@/assets/map-placeholder.jpg";
+import { Camera, Mic, Search, Upload } from "lucide-react";
+import { useRef, useState } from "react";
 
 interface PawMarker {
   x: number;
   y: number;
+  id: number;
+}
+
+interface UploadedFile {
+  name: string;
+  type: "photo" | "audio";
   id: number;
 }
 
@@ -24,16 +30,23 @@ const Report = () => {
   const [pathType, setPathType] = useState("");
   const [notes, setNotes] = useState("");
   const [pawMarkers, setPawMarkers] = useState<PawMarker[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
 
   const cameraInputRef = useRef<HTMLInputElement>(null);
   const photoInputRef = useRef<HTMLInputElement>(null);
   const audioRecordInputRef = useRef<HTMLInputElement>(null);
   const audioInputRef = useRef<HTMLInputElement>(null);
+  const dontKnowRef = useRef<HTMLDivElement>(null);
+  const scrollToDontKnow = () => {
+    dontKnowRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleImageCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       console.log("Captured image file:", file.name);
+      const newFile: UploadedFile = { name: file.name, type: "photo", id: Date.now() };
+      setUploadedFiles((prev) => [...prev, newFile]);
       toast({
         title: "Photo Captured!",
         description: `Ready to upload: ${file.name}`,
@@ -50,6 +63,8 @@ const Report = () => {
     const file = e.target.files?.[0];
     if (file) {
       console.log("Uploaded image file:", file.name);
+      const newFile: UploadedFile = { name: file.name, type: "photo", id: Date.now() };
+      setUploadedFiles((prev) => [...prev, newFile]);
       toast({
         title: "Photo Uploaded!",
         description: `Ready to use: ${file.name}`,
@@ -66,6 +81,8 @@ const Report = () => {
     const file = e.target.files?.[0];
     if (file) {
       console.log("Recorded audio file:", file.name);
+      const newFile: UploadedFile = { name: file.name, type: "audio", id: Date.now() };
+      setUploadedFiles((prev) => [...prev, newFile]);
       toast({
         title: "Audio Recorded!",
         description: `Ready to use: ${file.name}`,
@@ -82,6 +99,8 @@ const Report = () => {
     const file = e.target.files?.[0];
     if (file) {
       console.log("Uploaded audio file:", file.name);
+      const newFile: UploadedFile = { name: file.name, type: "audio", id: Date.now() };
+      setUploadedFiles((prev) => [...prev, newFile]);
       toast({
         title: "Audio Uploaded!",
         description: `Ready to use: ${file.name}`,
@@ -92,6 +111,10 @@ const Report = () => {
   
   const HandleUploadAudioClick = () => {
     audioInputRef.current?.click();
+  };
+
+  const removeUploadedFile = (id: number) => {
+    setUploadedFiles((prev) => prev.filter((file) => file.id !== id));
   };
 
   const handleMapClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -122,6 +145,7 @@ const Report = () => {
     setPathType("");
     setNotes("");
     setPawMarkers([]);
+    setUploadedFiles([]);
     toast({
       title: "Report Submitted!",
       description: "Your sighting has been successfully recorded.",
@@ -270,7 +294,7 @@ const Report = () => {
                 />
               </div>
 
-            <div className="pt-4 border-t">
+            <div ref={dontKnowRef} className="pt-4 border-t">
               <p className="text-sm font-medium mb-3">Don't know what you saw?</p>
               <div className="space-y-3">
                 <div className="flex gap-2">
