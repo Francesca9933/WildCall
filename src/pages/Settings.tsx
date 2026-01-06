@@ -1,11 +1,11 @@
-import Layout from "@/components/Layout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChevronRight, User, Lock, Users, Activity, Globe, LogOut, ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
-import Footer from "@/components/Footer";
 import settingsBg from "@/assets/settings-bg.jpg";
+import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { Activity, ArrowLeft, ChevronRight, Globe, Lock, LogOut, User, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Settings = () => {
     { icon: Lock, title: "Privacy", description: "Control your privacy settings", onClick: () => {} },
     { icon: Users, title: "Friends List", description: "View and manage your connections", onClick: () => {} },
     { icon: Activity, title: "Your Activity", description: "See your sightings and contributions", onClick: () => {} },
-    { icon: Globe, title: "Language and Notifications", description: "Customize app language and alerts", onClick: () => {} },
+    { icon: Globe, title: "Language and Notifications", description: "Customize app language and alerts", onClick: () => navigate("/language-notifications") },
     { icon: LogOut, title: "Exit", description: "Log-out from your account", onClick: handleLogout },
   ];
 
