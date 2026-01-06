@@ -1,4 +1,4 @@
-import { FileText, Gamepad2, Home, MapPin, Search } from "lucide-react";
+import { CheckSquare, FileText, Gamepad2, Home, MapPin } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const BottomNav = () => {
@@ -8,7 +8,7 @@ const BottomNav = () => {
     { path: "/", icon: Home, label: "Home" },
     { path: "/report", icon: MapPin, label: "Report" },
     { path: "/games", icon: Gamepad2, label: "Games" },
-    { path: "/check", icon: Search, label: "Check" },
+    { path: "/check", icon: CheckSquare, label: "Check" },
     { path: "/articles", icon: FileText, label: "Articles" },
   ];
 
