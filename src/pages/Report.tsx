@@ -226,6 +226,12 @@ const Report = () => {
                   value={species}
                   onChange={(e) => setSpecies(e.target.value)}
                 />
+                <button
+                  onClick={scrollToDontKnow}
+                  className="text-sm text-primary underline hover:text-primary/80 transition-colors"
+                >
+                  Don't know what you saw?
+                </button>
               </div>
 
               <div className="space-y-2">
