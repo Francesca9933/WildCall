@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Camera, Mic, Search, Upload } from "lucide-react";
+import { Camera, Mic, Search, Upload, X } from "lucide-react";
 import { useRef, useState } from "react";
 
 interface PawMarker {
@@ -325,6 +325,31 @@ const Report = () => {
                 </div>
               </div>
             </div>
+
+              {/* Uploaded Files Display */}
+              {uploadedFiles.length > 0 && (
+                <div className="pt-4 border-t">
+                  <p className="text-sm font-medium mb-3">Uploaded Files</p>
+                  <div className="flex flex-wrap gap-2">
+                    {uploadedFiles.map((file, index) => (
+                      <div
+                        key={file.id}
+                        className="flex items-center gap-2 bg-muted/50 px-3 py-2 rounded-lg text-sm"
+                      >
+                        <span className="text-primary font-medium">
+                          {file.type === "photo" ? "📷" : "🎵"} {file.type}{index + 1}
+                        </span>
+                        <button
+                          onClick={() => removeUploadedFile(file.id)}
+                          className="text-muted-foreground hover:text-destructive transition-colors"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <Button className="w-full" variant="nature" onClick={handleSubmit}>
                 Submit Report
