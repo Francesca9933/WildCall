@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Camera, Mic, Search, Upload, X } from "lucide-react";
+import { Camera, MapPin, Mic, Search, Upload, X } from "lucide-react";
 import { useRef, useState } from "react";
 
 interface PawMarker {
@@ -354,6 +354,40 @@ const Report = () => {
               <Button className="w-full" variant="nature" onClick={handleSubmit}>
                 Submit Report
               </Button>
+            </CardContent>
+          </Card>
+
+          {/* Recent Sightings */}
+          <Card className="shadow-medium bg-card/95 backdrop-blur">
+            <CardHeader>
+              <CardTitle>Recent Sightings</CardTitle>
+              <CardDescription>Latest wildlife observations from the community</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
+                <MapPin className="h-5 w-5 text-primary mt-1" />
+                <div>
+                  <p className="font-semibold">Mountain Goat</p>
+                  <p className="text-sm text-muted-foreground">Rocky Mountains, Colorado</p>
+                  <p className="text-xs text-muted-foreground mt-1">2 hours ago</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
+                <MapPin className="h-5 w-5 text-primary mt-1" />
+                <div>
+                  <p className="font-semibold">Bald Eagle</p>
+                  <p className="text-sm text-muted-foreground">Lake Superior, Minnesota</p>
+                  <p className="text-xs text-muted-foreground mt-1">5 hours ago</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
+                <MapPin className="h-5 w-5 text-primary mt-1" />
+                <div>
+                  <p className="font-semibold">Gray Wolf</p>
+                  <p className="text-sm text-muted-foreground">Yellowstone, Wyoming</p>
+                  <p className="text-xs text-muted-foreground mt-1">1 day ago</p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
