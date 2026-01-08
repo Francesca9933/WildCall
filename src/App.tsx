@@ -14,6 +14,7 @@ import CreateChallenge from "./pages/CreateChallenge";
 import Games from "./pages/Games";
 import Home from "./pages/Home";
 import JoinChallenge from "./pages/JoinChallenge";
+import LanguageNotifications from "./pages/LanguageNotifications";
 import NotFound from "./pages/NotFound";
 import QuizQuestion from "./pages/QuizQuestion";
 import QuizSelection from "./pages/QuizSelection";
@@ -163,6 +164,14 @@ const App = () => {
               element={
                 <ProtectedRoute session={session}>
                   <CreateChallenge />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/LanguageNotifications"
+              element={
+                <ProtectedRoute session={session}>
+                  <LanguageNotifications />
                 </ProtectedRoute>
               }
             />
