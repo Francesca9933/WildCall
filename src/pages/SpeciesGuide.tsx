@@ -7,7 +7,8 @@ import urban from "@/assets/urban.jpg";
 import Footer from "@/components/Footer";
 import Layout from "@/components/Layout";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ArrowLeft, Search } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
