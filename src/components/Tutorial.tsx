@@ -13,7 +13,7 @@ interface TutorialProps {
   skipPermissions?: boolean;
 }
 
-const Tutorial = ({ onComplete, skipPermissions = false }: TutorialProps => {
+const Tutorial = ({ onComplete, skipPermissions = false }: TutorialProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [showGPSRequest, setShowGPSRequest] = useState(false);
   const [showNotificationRequest, setShowNotificationRequest] = useState(false);
