@@ -8,22 +8,34 @@ import Tutorial from "@/components/Tutorial";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
-import { Crown, FileText, MapPin } from "lucide-react";
+import { CheckSquare, Crown, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const Home = () => {
   const [showTutorial, setShowTutorial] = useState(false);
+  const [skipPermissions, setSkipPermissions] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const checkTutorial = async () => {
+      // Check if tutorial=true in URL params (restarting tutorial)
+      if (searchParams.get('tutorial') === 'true') {
+        setSkipPermissions(true);
+        setShowTutorial(true);
+        // Remove the query param after starting tutorial
+        setSearchParams({});
+        return;
+      }
+
       const { data: { user } } = await supabase.auth.getUser();
       if (user?.user_metadata?.show_tutorial) {
+        setSkipPermissions(false);
         setShowTutorial(true);
       }
     };
     checkTutorial();
-  }, []);
+  }, [searchParams, setSearchParams]);
 
   const handleTutorialComplete = async () => {
     const { data: { user } } = await supabase.auth.getUser();
@@ -33,10 +45,11 @@ const Home = () => {
       });
     }
     setShowTutorial(false);
+    setSkipPermissions(false);
   };
   return (
     <Layout>
-      {showTutorial && <Tutorial onComplete={handleTutorialComplete} />}
+      {showTutorial && <Tutorial onComplete={handleTutorialComplete} skipPermissions={skipPermissions} />}
       <div className="relative min-h-screen">
         {/* Background Image */}
         <div 
@@ -67,7 +80,7 @@ const Home = () => {
             </Link>
             <Link to="/check" data-tutorial="check-top">
               <Button variant="sunrise" className="w-full h-24 flex flex-col gap-2">
-                <FileText className="h-6 w-6" />
+                <CheckSquare className="h-6 w-6" />
                 <span>Check Path</span>
               </Button>
             </Link>
