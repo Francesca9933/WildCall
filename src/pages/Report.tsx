@@ -316,11 +316,11 @@ const Report = () => {
                 <div className="flex gap-2">
                   <Button variant="outline" className="flex-1" onClick={HandleRecordAudioClick}>
                     <Mic className="mr-2 h-4 w-4" />
-                    Record Audio
+                    Record Video
                   </Button>
                   <Button variant="outline" className="flex-1" onClick={HandleUploadAudioClick}>
                     <Upload className="mr-2 h-4 w-4" />
-                    Upload Audio
+                    Upload Video
                   </Button>
                 </div>
               </div>
