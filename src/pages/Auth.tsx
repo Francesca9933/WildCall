@@ -1,8 +1,10 @@
+import SearchableSelect from "@/components/SearchableSelect";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { countries } from "@/data/countries";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Leaf, Shield } from "lucide-react";
@@ -263,13 +265,14 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="signup-country">Country</Label>
-                  <Input
-                    id="signup-country"
-                    type="text"
+                  <Label>Country</Label>
+                  <SearchableSelect
+                    options={countries}
                     value={signupCountry}
-                    onChange={(e) => setSignupCountry(e.target.value)}
-                    required
+                    onValueChange={setSignupCountry}
+                    placeholder="Select your country..."
+                    searchPlaceholder="Search Countries..."
+                    emptyMassage="No country found."
                   />
                 </div>
                 <div className="space-y-2">
