@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { countries } from "@/data/countries";
+import { languages } from "@/data/languages";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Leaf, Shield } from "lucide-react";
@@ -276,13 +277,14 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="signup-language">Language</Label>
-                  <Input
-                    id="signup-language"
-                    type="text"
+                  <Label>Language</Label>
+                  <SearchableSelect
+                    options={languages}
                     value={signupLanguage}
-                    onChange={(e) => setSignupLanguage(e.target.value)}
-                    required
+                    onValueChange={setSignupLanguage}
+                    placeholder="Select your language..."
+                    searchPlaceholder="Search languages..."
+                    emptyMessage="No language found."
                   />
                 </div>
                 <div className="space-y-2">
