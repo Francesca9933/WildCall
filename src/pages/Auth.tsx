@@ -39,9 +39,23 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      // For now, we'll use email/password auth with the username as email
+      let emailToUse = loginUsername;
+      //If not an email, look up the email by username from profiles table
+      if (!loginUsername.includes("@")) {
+        const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("email")
+        .eq("username", loginUsername)
+        .single();
+      
+        if (profileError || !profile) {
+          throw new Error("Username not found");
+        }
+        emailToUse = profile.email;
+      }
+
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: loginUsername.includes("@") ? loginUsername : `${loginUsername}@wildcall.app`,
+        email: emailToUse,
         password: loginPassword,
       });
 
