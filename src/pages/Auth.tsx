@@ -272,8 +272,8 @@ const Auth = () => {
                     value={signupCountry}
                     onValueChange={setSignupCountry}
                     placeholder="Select your country..."
-                    searchPlaceholder="Search Countries..."
-                    emptyMassage="No country found."
+                    searchPlaceholder="Search countries..."
+                    emptyMessage="No country found."
                   />
                 </div>
                 <div className="space-y-2">
