@@ -76,7 +76,7 @@ const QuizSelection = () => {
               <CardDescription>Choose your challenge</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {["Kids", "Adults", "Easy", "Medium", "Hard", "Wild"].map((level) => (
+              {["Kids", "Easy", "Medium", "Hard", "Wild"].map((level) => (
                 <div key={level} className="flex items-center space-x-2">
                   <Checkbox id={level} />
                   <Label htmlFor={level}>{level}</Label>
