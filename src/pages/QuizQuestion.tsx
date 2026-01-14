@@ -1,13 +1,13 @@
+import gamesBg from "@/assets/games-bg.jpg";
+import wolf from "@/assets/wolf.jpg";
+import Footer from "@/components/Footer";
 import Layout from "@/components/Layout";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "@/components/Footer";
-import wolf from "@/assets/wolf.jpg";
-import gamesBg from "@/assets/games-bg.jpg";
 
 const QuizQuestion = () => {
   const { toast } = useToast();
@@ -77,7 +77,13 @@ const QuizQuestion = () => {
                 {["Wolf", "Dog", "Elephant", "Bear"].map((option) => (
                   <Button
                     key={option}
-                    variant={selectedAnswer === option ? "default" : "outline"}
+                    variant={
+                      selectedAnswer === option 
+                      ? option === "Wolf" 
+                        ? "default" 
+                        : "destructive"
+                      : "outline"
+                    }
                     className="w-full text-left justify-start h-auto py-4 text-lg"
                     onClick={() => handleAnswer(option)}
                   >
