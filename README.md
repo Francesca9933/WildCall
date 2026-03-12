@@ -6,3 +6,12 @@ The application is designed to provide community safety, ecological research and
 3. EDUCATION: users gain access to expert-linked articles, detailed animal descriptions, and interactive games designed to educate the public on biodiversity, and critical environmental topics.
 4. DATA MONETIZATION: embedded geographical maps allow us to passively collect aggregate, anonymized data on walkable paths, user habits, and general useful statistics. This structured information represents a further monetization opportunity for developers.
 The application adopts a fully responsive design architecture to maximize its utility across all contexts. The content is primarily optimized in a mobile-first approach since it seems the most probable way in which users will dynamically interact with the app, but it is also designed for usage on larger tablet and desktop screens, especially concerning the learning part where people might be comfortably sitting at home, wanting to acquire new knowledge or killing time with instructive games.
+
+## Tools and Libraries
+- _TypeScript_ as JavaScript-derived main language
+- _REACT_ libraries for stable components architecture
+- _Vite_ as build tool chosen for its speed in cold start times and hot module replacement
+- _Tailwind CSS_ (as open-source CSS framework) for styiling UI and _shadcn-ui_ for pre-built components (cards, buttons...)
+- _Supabase_ as backend including PostgreSQL database, Authentication (Auth), and API access, minimizing manual backend development
+- _Low-fi Prototyping_ for sketches and storyboards on paper, _Medium-fi Prototyping_ for interactions without logic using FIGMA, and _High-fi Prototyping_ with code in GitHub Repo
+- No release phase involved 
